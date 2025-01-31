@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fetch = require('node-fetch');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,27 @@ app.get('/', (req, res) => {
         </body>
         </html>
     `);
+});
+
+app.post('/login', (req,res) => {
+  let username = req.body.user;
+  let pw = req.body.pw;
+  if (!username && !pw) {
+    res.send("沒有東西");
+  }
+  if (!username || !pw) {
+    res.send("沒有東西");
+  }
+  fetch("https://bc.wtechhk.xyz/get/chain")
+    .then(res=>res.json())
+    .then(data=>{
+      data.forEach(block => {
+        if (block.blockID.startswith('190')) {
+            //let user login
+        }
+      });
+    })
+    .catch(err=>res.send(err));
 });
 
 app.listen(PORT, () => {
