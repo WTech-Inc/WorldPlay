@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // 提供靜態文件
-// app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname,'src')));
 
 // 返回 html 文件
 app.get('/', (req, res) => {
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div id="root"></div>
-            <script src="src/index.js"></script>
+            <script src="/index.js"></script>
         </body>
         </html>
     `);
@@ -60,7 +60,7 @@ app.post('/login', (req,res) => {
         <body>
             <span id='user'>${username}</span>
             <div id="root"></div>
-            <script src="src/dash.js"></script>
+            <script src="/dash.js"></script>
         </body>
         </html>
     `);
@@ -86,7 +86,7 @@ app.post('/login', (req,res) => {
         <body>
             <span id='user'>${username}</span>
             <div id="root"></div>
-            <script src="src/dash.js"></script>
+            <script src="/dash.js"></script>
         </body>
         </html>
     `);
