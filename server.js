@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 
 
 const app = express();
