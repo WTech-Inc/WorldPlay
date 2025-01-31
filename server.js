@@ -39,8 +39,31 @@ app.post('/login', (req,res) => {
     .then(res=>res.json())
     .then(data=>{
       data.forEach(block => {
-        if (block.blockID.startswith('190')) {
-            //let user login
+        if (block.blockID.startsWith('190')) {
+            let rawData = block.rawData.split('->');
+            //rawData = username -> password
+            if (rawData[0] == username && rawData[1] == pw) {
+                res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>世遊娛樂城 -- ${username} 主頁</title>
+            <style>
+              #user {
+                display: none;
+                }
+            </style>
+        </head>
+        <body>
+            <span id='user'>${username}</span>
+            <div id="root"></div>
+            <script src="src/dash.js"></script>
+        </body>
+        </html>
+    `);
+            }
         }
       });
     })
