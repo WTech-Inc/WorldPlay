@@ -97,6 +97,6 @@ app.post('/login', (req,res) => {
     .catch(err=>res.send(err));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
     console.log(`運行端口：${PORT}`);
 });
