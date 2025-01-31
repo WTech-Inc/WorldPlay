@@ -38,6 +38,7 @@ const App = () => {
         </form>
          <button className="modal-close" onClick={handleCloseModal}>關閉</button>
         </Modal>
+        </>
     );
 };
 
