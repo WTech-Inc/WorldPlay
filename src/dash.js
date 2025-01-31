@@ -2,7 +2,7 @@ const React = require('react');
 const {useState} = React;
 const ReactDOM =  require('react-dom');
 require('./index.css');
-const Modal = require('components/Modal');
+const Modal = require('./components/Modal');
 
 const App = () => {
     const [isModalOpen, setModalOpen] = useState(false);
