@@ -13,7 +13,7 @@
     "react",
     "express"
   ],
-  "author": "Your Name",
+  "author": "WTech",
   "license": "MIT",
   "dependencies": {
     "react": "^18.0.0",
