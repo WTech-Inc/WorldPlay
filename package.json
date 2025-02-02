@@ -4,7 +4,7 @@
   "description": "A simple gambling app using React and Express",
   "main": "server.js",
   "scripts": {
-    "build": "npm install && npm install --save-dev concurrently && webpack",
+    "build": "npm update && npm install --save-dev webpack-dev-server && npm install && npm install --save-dev concurrently && webpack",
     "start": "node server.js",
     "dev": "concurrently \"webpack serve --open\" \"node server.js\""
   },
