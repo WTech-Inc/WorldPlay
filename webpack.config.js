@@ -10,6 +10,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                 },
@@ -26,11 +27,12 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
-        static: path.join(__dirname, 'op'), // 提供靜態文件
+        static: path.join(__dirname, 'op'),
         port: 5000,
-        historyApiFallback: true, // 支持 HTML5 的 history API
+        historyApiFallback: true,
         proxy: {
-            '/': 'http://0.0.0.0:5000',
+            '/api': 'http://localhost:3000', // 將請求代理到您的 API
         },
+        open: true,
     },
 };
