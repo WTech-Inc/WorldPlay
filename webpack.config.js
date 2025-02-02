@@ -27,9 +27,10 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
-        static: path.join(__dirname, 'op'),
-        port: 5000,
-        historyApiFallback: true,
-        open: true,
+      static: {
+      directory: path.join(__dirname, 'op'),
     },
+    compress: true,
+    port: 9000,
+  },
 };
