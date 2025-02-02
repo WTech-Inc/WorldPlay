@@ -4,9 +4,9 @@
   "description": "A simple gambling app using React and Express",
   "main": "server.js",
   "scripts": {
-    "build": "webpack",
+    "build": "npm install && npm install --save-dev concurrently && webpack",
     "start": "node server.js",
-    "dev": "webpack --watch"
+    "dev": "concurrently \"webpack serve --open\" \"node server.js\""
   },
   "keywords": [
     "wp",
