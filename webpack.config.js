@@ -30,9 +30,6 @@ module.exports = {
         static: path.join(__dirname, 'op'),
         port: 5000,
         historyApiFallback: true,
-        proxy: {
-            '/api': 'http://localhost:3000', // 將請求代理到您的 API
-        },
         open: true,
     },
 };
