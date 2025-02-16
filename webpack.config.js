@@ -50,7 +50,7 @@ module.exports = {
             directory: path.join(__dirname, 'op'), // 靜態文件目錄
         },
         compress: true, // 啟用 gzip 壓縮
-        port: 9000, // 伺服器端口
+        port: 5000, // 伺服器端口
         hot: true, // 啟用熱模組替換 (HMR)
         open: true, // 自動打開瀏覽器
         historyApiFallback: true, // 支持 HTML5 History API
