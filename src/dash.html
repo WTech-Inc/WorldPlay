@@ -126,16 +126,12 @@
           if (!amount || amount == null) return;
           let contract = Contract.init("bit852",wbankUsername,amount);
           contract.showModal();
-          statement =  await processPayment();
+          statement =  await contract.processPayment();
           if (statement.startsWith("0x")) alert("合約地址："+statement);
           else {
             alert(statement);
             }
         });
-        
-        const processPayment = async () => {
-          await contract.processPayment();
-        };
         
         document.getElementById('gameBlock2').addEventListener('click', function() {
             alert('不行!');
