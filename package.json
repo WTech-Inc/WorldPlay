@@ -4,7 +4,7 @@
   "description": "A simple gambling app using React and Express",
   "main": "server.js",
   "scripts": {
-    "build": "npm update && npm install && webpack",
+    "build": "npm update && npm install",
     "start": "node server.js",
     "dev": "node server.js"
   },
