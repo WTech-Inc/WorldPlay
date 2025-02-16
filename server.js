@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
 const sqlite3 = require('sqlite3').verbose();
+const SHA256 = require("crypto-js/sha256");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -40,37 +41,42 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', async (req,res) => {
-  const { username, pw } = req.body;
+    const { username, pw } = req.body;
 
-  if (!username || !pw) {
-    return res.status(400).json({ success: false, message: "請輸入帳號和密碼" });
-  }
-  try {
-        const chainData = await fetch("https://bc.wtechhk.xyz/get/chain").then(res => res.json());
-        let userFound = false;
-        for (const block of chainData) {
-            if (block.blockID.startsWith('190')) {
-                const rawData = block.rawData.split('->');
-                const storedUsername = rawData[0];
-                const storedPassword = rawData[1];
-
-                if (storedUsername === username && storedPassword === pw) {
-                    userFound = true;
-                    break;
-                }
-            }
-        }
-
-        if (userFound) {
-            res.redirect(`/dash.html?username=${username}`);
-        } else {
-            res.status(401).json({ success: false, message: "帳號或密碼錯誤" }); // 返回 401 錯誤碼
-        }
-
-    } catch (error) {
-        console.error("登入錯誤:", error);
-        res.status(500).json({ success: false, message: "伺服器錯誤，請稍後再試" });
+    if (!username || !pw) {
+        return res.status(400).json({ success: false, message: "請輸入帳號和密碼" });
     }
+
+    // 使用 SQLite 查詢用戶
+    db.get("SELECT * FROM users WHERE username = ?", [username], (err, row) => {
+        if (err) {
+            console.error("資料庫查詢錯誤", err.message);
+            return res.status(500).json({ success: false, message: "伺服器錯誤，請稍後再試" });
+        }
+
+        if (row) {
+            // 檢查密碼 (注意: 這裡只是簡單比對，正式環境請使用密碼雜湊)
+            if (row.password === SHA256(pw).toString()) {
+                // 登入成功，重定向到 dash.html，並傳遞 username
+                res.redirect(`/dash.html?username=${username}`);
+            } else {
+                // 密碼錯誤
+                res.status(401).json({ success: false, message: "密碼錯誤" });
+            }
+        } else {
+            // 帳號不存在
+            let password = SHA256(pw).toString();
+            db.run("INSERT INTO users(username, password, chips) VALUES (?, ?, ?)", [username, password, 0], function(err) {
+        if (err) {
+            console.error("新增使用者到資料庫時發生錯誤:", err.message);
+            return res.status(500).json({ success: false, message: "伺服器錯誤，請稍後再試" });
+        } else {
+            console.log(`已新增使用者: ${username} 到資料庫。`);
+            res.redirect(`/dash.html?username=${username}`);
+        }
+    });
+        }
+    });
 });
 
 app.get('/dash.html', (req, res) => {
