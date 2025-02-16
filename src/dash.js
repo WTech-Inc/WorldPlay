@@ -11,8 +11,9 @@ const App = () => {
     return (
        <>
       {/* 開始web */}
+      <h2>歡迎 {user}</h2>
       </>
     );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.body);
