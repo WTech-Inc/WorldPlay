@@ -72,6 +72,7 @@
             color: white;
         }
     </style>
+    <script src="https://sites.wtechhk.xyz/static/bc/contract.min.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -83,12 +84,13 @@
         <div class="chip-display">
             籌碼: <span id="chipValue">10000</span>  </div>
         <div class="action-buttons">
-            <button class="action-button">充值</button>
-            <button class="action-button">提款</button>
+            <button id="get-chips" class="action-button">充值</button>
+            <button id="get-coins" class="action-button">提款</button>
         </div>
     </div>
 
     <script>
+        let contract;
         document.getElementById('gameBlock1').addEventListener('click', function() {
             // 取得 username
             const username = document.getElementById('displayName').textContent;
@@ -98,7 +100,41 @@
             // 導向到 /game/bit 路由，並帶上 username 和 chipValue
             window.location.href = `/game/bit?username=${username}&chipValue=${chipValue}`;
         });
-
+        
+        const cancelPayment = () => {
+          alert("交易取消");
+        };
+        
+        document.getElementById('get-chips').addEventListener("click",async ()=>{
+          let wbankUsername = prompt("請輸入WBank用戶名:");
+          let amount = prompt("請輸入充值籌碼數量: (Hint: 1WTC$==1個籌碼)");
+          if (!wbankUsername || wbankUsername == null) return;
+          if (!amount || amount == null) return;
+          let contract = Contract.init(wbankUsername,"bit852",amount);
+          statement =  await processPayment();
+          if (statement.startsWith("0x")) alert("合約地址："+statement);
+          else {
+            alert(statement);
+            }
+        });
+        
+        document.getElementById('get-coins').addEventListener("click",async ()=>{
+          let wbankUsername = prompt("請輸入WBank用戶名:");
+          let amount = prompt("請輸入wcoins數量: (Hint: 1WTC$==1個籌碼)");
+          if (!wbankUsername || wbankUsername == null) return;
+          if (!amount || amount == null) return;
+          let contract = Contract.init("bit852",wbankUsername,amount);
+          statement =  await processPayment();
+          if (statement.startsWith("0x")) alert("合約地址："+statement);
+          else {
+            alert(statement);
+            }
+        });
+        
+        const processPayment = async () => {
+          await contract.processPayment();
+        };
+        
         document.getElementById('gameBlock2').addEventListener('click', function() {
             alert('不行!');
         });
