@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世遊娛樂城 - 主頁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .dashboard-container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .game-blocks-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .game-block {
+            width: 200px;
+            height: 150px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .game-block:hover {
+            background-color: #dee2e6;
+        }
+        .chip-display {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        .action-buttons {
+            text-align: center;
+        }
+        .action-button {
+            background-color: white;
+            color: #007bff;
+            border: 2px solid #007bff;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .action-button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>世遊娛樂城 - 歡迎您，<span id="displayName"></span></h1>
+        <div class="game-blocks-container">
+            <div class="game-block" id="gameBlock1">百家樂</div>
+            <div class="game-block" id="gameBlock2">未有中</div>
+        </div>
+        <div class="chip-display">
+            籌碼: <span id="chipValue">10000</span>  </div>
+        <div class="action-buttons">
+            <button class="action-button">充值</button>
+            <button class="action-button">提款</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('gameBlock1').addEventListener('click', function() {
+            // 取得 username
+            const username = document.getElementById('displayName').textContent;
+            // 取得 chipValue
+            const chipValue = document.getElementById('chipValue').textContent;
+
+            // 導向到 /game/bit 路由，並帶上 username 和 chipValue
+            window.location.href = `/game/bit?username=${username}&chipValue=${chipValue}`;
+        });
+
+        document.getElementById('gameBlock2').addEventListener('click', function() {
+            alert('不行!');
+        });
+
+        // 讀取 URL 中的 username 參數並顯示
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById('displayName').textContent = username;
+            } else {
+                // 如果 URL 中沒有 username 參數，可以顯示預設值或錯誤訊息
+                document.getElementById('displayName').textContent = '使用者'; // 預設值
+                console.warn('Username not found in URL.');
+            }
+        });
+
+    </script>
+</body>
+</html>
