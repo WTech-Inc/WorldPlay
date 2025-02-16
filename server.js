@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html')); // 發送打包後的 index.html
 });
 
-app.post('/login', (req,res) => {
+app.post('/login', async (req,res) => {
   const { username, pw } = req.body;
 
   if (!username || !pw) {
