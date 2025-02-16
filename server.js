@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname,'op')));
 
 // 返回 html 文件
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html')); // 發送打包後的 index.html
+    res.sendFile(path.join(__dirname, 'src', 'index.html')); // 發送打包後的 index.html
 });
 
 app.post('/login', async (req,res) => {
