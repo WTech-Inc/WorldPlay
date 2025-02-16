@@ -103,6 +103,7 @@
         
         const cancelPayment = () => {
           alert("交易取消");
+          document.getElementById("modal").style.display="none"
         };
         
         document.getElementById('get-chips').addEventListener("click",async ()=>{
@@ -124,6 +125,7 @@
           if (!wbankUsername || wbankUsername == null) return;
           if (!amount || amount == null) return;
           let contract = Contract.init("bit852",wbankUsername,amount);
+          contract.showModal();
           statement =  await processPayment();
           if (statement.startsWith("0x")) alert("合約地址："+statement);
           else {
