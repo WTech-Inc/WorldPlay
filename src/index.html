@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>世遊娛樂城</title>
+    <title>世遊娛樂城 - 安全登入 secure-login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* 包含 padding 和 border 在 width 內 */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="root"></div>
-    <script src="./bundle.js"></script>  </body>
+    <div class="container">
+        <h1>歡迎來到世遊娛樂城</h1>
+        <form class="login-form" id="loginForm" action="/login" method="post">
+            <div class="input-group">
+                <label for="username">帳號:</label>
+                <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
+            </div>
+            <div class="input-group">
+                <label for="password">密碼:</label>
+                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+            </div>
+            <button type="submit">登入</button>
+            <div class="error-message" id="loginError"></div>
+        </form>
+        <p style="color:gray;">如果沒有賬號，會自動建立。</p>
+    </div>
+
+    <script>
+        //JavaScript-code
+    </script>
+</body>
 </html>
