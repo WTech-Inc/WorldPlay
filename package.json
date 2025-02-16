@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm update && npm install && webpack",
     "start": "node server.js",
-    "dev": "concurrently \"webpack serve --open\" \"node server.js\""
+    "dev": "webpack --config webpack.config.js"
   },
   "keywords": [
     "wp",
