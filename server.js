@@ -48,6 +48,14 @@ app.post('/login', async (req,res) => {
     }
 });
 
+app.get('/dash.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'dash.html'));
+});
+
+app.get('/game/bit', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'bit.html'));
+});
+
 app.listen(PORT,'0.0.0.0', () => {
     console.log(`運行端口：${PORT}`);
 });
