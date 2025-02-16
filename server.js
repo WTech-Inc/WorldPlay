@@ -37,7 +37,7 @@ app.post('/login', (req,res) => {
         }
 
         if (userFound) {
-            res.json({ success: true, message: "登入成功", username: username }); // 返回 JSON 成功響應
+            res.redirect(`/dash.html?username=${username}`);
         } else {
             res.status(401).json({ success: false, message: "帳號或密碼錯誤" }); // 返回 401 錯誤碼
         }
