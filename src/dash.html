@@ -219,7 +219,7 @@
           if (!wbankUsername || wbankUsername == null) return;
           if (!amount || amount == null) return;
           let contract = Contract.init(wbankUsername,"bit852",amount);
-          statement =  await processPayment();
+          let statement =  await contract.processPayment();
           if (statement.startsWith("0x")) alert("合約地址："+statement);
           else {
             alert(statement);
