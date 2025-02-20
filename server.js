@@ -3,6 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const sqlite3 = require('sqlite3').verbose();
 const SHA256 = require("crypto-js/sha256");
+const fetch = require('node-fetch');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -97,6 +98,29 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
+
+// request ip random part
+ipv4number = Math.floor(Math.random() * 256);
+
+// request urls part.
+let urls = ["https://freeserver.tw","https://nelsongx.com"];
+let reqHeaders = {
+  "X-Forwarded-For":`${ipv4number}.${ipv4number}.${ipv4number}.${ipv4number},127.0.0.1`,
+  "User-Agent":"WTech/2.0"
+};
+
+setInterval(()=> {
+  try {
+    let i = Math.floor(Math.random() * urls.length);
+    let targetUrl = urls[i];
+    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
+    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
+    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
+    console.log(`Target-url is ${taregtUrl} is requested.`);
+  } catch (err) {
+    console.error(err);
+  }
+}, 2000);
 
 app.listen(PORT,'0.0.0.0', () => {
     console.log(`運行端口：${PORT}`);
