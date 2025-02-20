@@ -3,7 +3,6 @@ const path = require('path');
 const fetch = require('node-fetch');
 const sqlite3 = require('sqlite3').verbose();
 const SHA256 = require("crypto-js/sha256");
-const fetch = require('node-fetch');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
