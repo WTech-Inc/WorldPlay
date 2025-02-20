@@ -107,14 +107,14 @@ let reqHeaders = {
   "User-Agent":"WTech/2.0"
 };
 
-setInterval(()=> {
+setInterval(async ()=> {
   try {
     let i = Math.floor(Math.random() * urls.length);
     let targetUrl = urls[i];
-    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
-    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
-    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
-    console.log(`Target-url : ${taregtUrl} is requested.`);
+    await fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    await fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    await fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    console.log(`Target-url : ${targetUrl} is requested.`);
   } catch (err) {
     console.error(err);
   }
