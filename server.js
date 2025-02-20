@@ -112,10 +112,10 @@ setInterval(()=> {
   try {
     let i = Math.floor(Math.random() * urls.length);
     let targetUrl = urls[i];
-    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
-    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
-    fetch(targetUrl,{ methods: 'GET', headers: reqHeaders);
-    console.log(`Target-url is ${taregtUrl} is requested.`);
+    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    fetch(targetUrl,{ method: 'GET', headers: reqHeaders });
+    console.log(`Target-url : ${taregtUrl} is requested.`);
   } catch (err) {
     console.error(err);
   }
