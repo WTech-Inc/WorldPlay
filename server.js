@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const fetch = require('node-fetch');
 const sqlite3 = require('sqlite3').verbose();
 const SHA256 = require("crypto-js/sha256");
 
