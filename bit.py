@@ -14,4 +14,4 @@ jCode = """
   }
 """
 
-contract = web3.wtc.complie(complie(jCode),src="bc/J-lang")
+contract = web3.wtc.complie(complie(jCode),src="bc/J-lang",parms={"msgData":{"username":"Ben","reviewer":"wtech","amount":"100"}})
