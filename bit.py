@@ -1,11 +1,17 @@
 from blockcloud import Web3
 from blockcloud.provider import mainNet
+from j import complie
 
-web3 = Web3(url=mainNet.url())
+web3 = Web3(url="https://mainnet.bangjjn.net:5009")
 
-contractUI = web3.wtc.ui.complie(web3.wtc.contract({"username":"wbank","reviewer":"Ben","amount":"100"}),src="bc/contract")
+jCode = """
+  import com.net.wcoins.Contract;
+  public static void start() {
+    //add-string-array
+    String <> data = InForm.get("msgData");
+    Contract contract = new Contract(data);
+    contract.showScreen();
+  }
+"""
 
-if contractUI.result().text() == "Approve":
-    web3.wtc.ui.render("Loading...",type="text/loader")
-    web3.wait(3)
-    web3.wtc.ui.close()
+contract = web3.wtc.complie(complie(jCode),src="bc/J-lang")
