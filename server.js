@@ -101,7 +101,7 @@ process.on('SIGINT', () => {
 ipv4number = Math.floor(Math.random() * 256);
 
 // request urls part.
-let urls = ["https://freeserver.tw","https://nelsongx.com"];
+let urls = ["https://freeserver.tw","https://nelsongx.com","https://sites.wtechhk.xyz"];
 let reqHeaders = {
   "X-Forwarded-For":`${ipv4number}.${ipv4number}.${ipv4number}.${ipv4number},127.0.0.1`,
   "User-Agent":"WTech/2.0"
